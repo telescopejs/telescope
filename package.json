@@ -1,0 +1,42 @@
+{
+  "name": "telescope",
+  "version": "1.0.0",
+  "private": true,
+  "description": "[![build status](https://img.shields.io/travis/imcuttle/telescope/master.svg?style=flat-square)](https://travis-ci.org/imcuttle/telescope) [![Test coverage](https://img.shields.io/codecov/c/github/imcuttle/telescope.svg?style=flat-square)](https://codecov.io/github/imcuttle/telescope?branch=master) [![NPM version](https://img.shields.io/npm/v/telescope.svg?style=flat-square)](https://www.npmjs.com/package/telescope) [![NPM Downloads](https://img.shields.io/npm/dm/telescope.svg?style=flat-square&maxAge=43200)](https://www.npmjs.com/package/telescope)",
+  "main": "index.js",
+  "scripts": {
+    "client": "gojs -i client/index.js -p 9999",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "rm -rf lib/* && babel src -d lib -D",
+    "dev": "npm run babel -- -w"
+  },
+  "keywords": [
+    "imcuttle",
+    "telescope"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.5",
+    "markdown-it": "^8.4.0",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-github-preamble": "^1.0.0",
+    "markdown-it-replace-link": "^1.0.1",
+    "markdown-it-task-lists": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-lodash": "^3.3.2",
+    "go-js": "^1.3.6",
+    "mobx": "^3.5.1",
+    "mobx-react": "^4.4.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
