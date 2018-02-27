@@ -5,6 +5,8 @@
  * @description
  */
 import defaultPlugin from './plugins/default'
+import highlight from './utils/highlight'
+import markdown from './utils/markdown'
 import parseUrl from './utils/parseQuerystring'
 import each from 'lodash/each'
 
@@ -70,8 +72,39 @@ export default class Telescope {
 
     url = await matchedPlugin.urlTransform(url)
     const response = await matchedPlugin.fetch(url)
+    let value, text
+    switch (response.contentType) {
+      case 'code':
+      case 'javascript':
+      case 'css':
+        let range = this.options.range
+        text = await response.text()
+        if (!Array.isArray(range)) {
+          range = [range]
+        }
+        let [start, end] = range
+        if (parseInt(start) == start && start != 0) {
+          const lines = text.split('\n')
+          // neg
+          if (typeof end !== 'undefined' && -end === Math.abs(end)) {
+            end = lines.length - 1 + end
+          }
+          text = lines.slice(start - 1, end).join('\n')
+        }
+        value = await matchedPlugin.renderCode(text, response)
+        break
+      case 'image':
+        value = await matchedPlugin.renderImage(response)
+        // @todo blob
+        break
+      case 'md':
+      default:
+        text = await response.text()
+        value = await matchedPlugin.renderMarkdown(text, response)
+    }
+
     return {
-      value: await matchedPlugin.render(response),
+      value,
       contentType: response.contentType,
       url: response.url,
     }

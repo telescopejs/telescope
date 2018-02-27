@@ -1,7 +1,7 @@
 # telescope
 
-[![build status](https://img.shields.io/travis/telescopejs/telescopejs/master.svg?style=flat-square)](https://travis-ci.org/telescopejs/telescopejs)
-[![Test coverage](https://img.shields.io/codecov/c/github/telescopejs/telescopejs.svg?style=flat-square)](https://codecov.io/github/telescopejs/telescopejs?branch=master)
+[![build status](https://img.shields.io/travis/telescopejs/telescope/master.svg?style=flat-square)](https://travis-ci.org/telescopejs/telescope)
+[![Test coverage](https://img.shields.io/codecov/c/github/telescopejs/telescope.svg?style=flat-square)](https://codecov.io/github/telescopejs/telescope?branch=master)
 
 ```bash
 git clone ...

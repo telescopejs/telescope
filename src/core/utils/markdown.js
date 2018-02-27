@@ -34,6 +34,7 @@ export default async function markdown(markdown, options = {}) {
   const {
     markdownItOptions = {},
     fromUrl           = '',
+    transformers      = [],
     imgFromUrl        = fromUrl
   } = options
   const opts = Object.assign({
@@ -48,12 +49,14 @@ export default async function markdown(markdown, options = {}) {
     markdownItOptions
   })
 
-  const mark = new Markdown(opts)
-    .use(taskList)
-    .use(emoji)
-    .use(preamble)
-    .use(replaceLink)
-    // .use(headings)
+  const mark = [taskList, emoji, preamble, replaceLink]
+    .concat(transformers)
+    .reduce((main, plugin) => {
+      if (Array.isArray(plugin)) {
+        return main.use(plugin[0], plugin[1])
+      }
+      return main.use(plugin)
+    }, new Markdown(opts))
 
   return mark.render(markdown)
 }

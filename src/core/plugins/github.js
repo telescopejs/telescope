@@ -56,6 +56,7 @@ module.exports = function github(telescope) {
         res.imgFromUrl = u.resolve('https://github.com', join(obj.repo, 'raw', obj.branch, obj.filepath))
         return res
       })
-    }
+    },
+    markdownTransformers: []
   }
 }
