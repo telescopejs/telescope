@@ -2,13 +2,16 @@
   "name": "telescope",
   "version": "1.0.0",
   "private": true,
-  "description": "[![build status](https://img.shields.io/travis/imcuttle/telescope/master.svg?style=flat-square)](https://travis-ci.org/imcuttle/telescope) [![Test coverage](https://img.shields.io/codecov/c/github/imcuttle/telescope.svg?style=flat-square)](https://codecov.io/github/imcuttle/telescope?branch=master) [![NPM version](https://img.shields.io/npm/v/telescope.svg?style=flat-square)](https://www.npmjs.com/package/telescope) [![NPM Downloads](https://img.shields.io/npm/dm/telescope.svg?style=flat-square&maxAge=43200)](https://www.npmjs.com/package/telescope)",
-  "main": "index.js",
+  "description": "🔭 The service ( from Client or Server ) works for render text ( md / code ) from fetching URL.",
+  "main": "dist/core/index.js",
   "scripts": {
-    "client": "gojs -i client/index.js -p 9999",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "rm -rf lib/* && babel src -d lib -D",
-    "dev": "npm run babel -- -w"
+    "client": "gojs src/client -i index.js -p 9999",
+    "client:build": "cd src/client && gojs -b index.js && mv .dist/ ../../public",
+    "test": "jest",
+    "test:cover": "jest --coverage",
+    "babel": "rimraf dist && babel src -d dist -D --ignore=**/*.test.js",
+    "dev": "npm run babel -- -w",
+    "start": "nodemon --inspect dist/server/"
   },
   "keywords": [
     "imcuttle",
@@ -22,21 +25,37 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "classname": "0.0.0",
+    "express": "^4.16.2",
+    "github-markdown-css": "^2.10.0",
+    "highlight.js": "^9.12.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5",
     "markdown-it": "^8.4.0",
     "markdown-it-emoji": "^1.4.0",
+    "markdown-it-github-headings": "^1.1.0",
     "markdown-it-github-preamble": "^1.0.0",
     "markdown-it-replace-link": "^1.0.1",
-    "markdown-it-task-lists": "^2.1.0"
+    "markdown-it-task-lists": "^2.1.0",
+    "md5": "^2.2.1",
+    "parse-github-url": "1.0.2",
+    "pify": "^3.0.0",
+    "puppeteer": "^1.1.1",
+    "qs": "^6.5.1",
+    "url-join": "^4.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-lodash": "^3.3.2",
-    "go-js": "^1.3.6",
+    "go-js": "^1.3.12",
+    "jest": "^22.4.2",
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.1",
+    "nodemon": "^1.15.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-mobx-vm": "0.0.10",
+    "rimraf": "^2.6.2"
   }
 }

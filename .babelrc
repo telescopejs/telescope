@@ -13,7 +13,7 @@
         "useBuiltIns": true
       }
     ],
-    // "react"
+    "react"
   ],
   "plugins": [
     "lodash",
@@ -27,7 +27,5 @@
         "regenerator": true
       }
     ]
-  ],
-  "ignore": [
   ]
 }

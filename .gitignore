@@ -2,6 +2,6 @@
 ~*
 dist/
 node_modules/
-lib/
 .entry/
 .dist/
+public/

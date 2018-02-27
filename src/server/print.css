@@ -1,0 +1,21 @@
+
+body {
+  margin: 0!important;
+  padding: 0!important;
+}
+.telescope {
+  max-width: none;
+  padding: 20px 15px!important;
+}
+.telescope.code-body {
+  padding: 0!important;
+}
+.telescope.code-body code {
+  display: inline-block;
+  padding: 10px;
+}
+.telescope.code-body .hljs {
+  margin: 0!important;
+  padding: 0;
+  border: none;
+}

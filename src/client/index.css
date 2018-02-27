@@ -1,0 +1,27 @@
+.telescope {
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 20px;
+  margin: auto;
+  max-width: 880px;
+}
+
+.telescope.code-body pre {
+  margin: 0;
+}
+
+body {
+  min-width: 300px;
+}
+/*normal*/
+@media screen and (max-width: 1200px) {
+}
+
+/*md*/
+@media screen and (max-width: 780px) {
+}
+
+/*sm*/
+@media screen and (max-width: 430px) {
+}
