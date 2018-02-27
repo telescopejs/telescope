@@ -4,7 +4,7 @@
  * @date 2018/2/26
  * @description
  */
-import _ from 'lodash'
+import each from 'lodash/each'
 
 export function eachIterator(it, action) {
   let next, i = 0
@@ -27,7 +27,7 @@ export function isPrimitive(arg) {
 }
 
 export function deepEach(obj, action) {
-  _.each(obj, function (val) {
+  each(obj, function (val) {
     action.apply(this, [...arguments].concat(obj))
     if (!isPrimitive(val)) {
       deepEach(val, action)

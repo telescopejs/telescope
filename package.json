@@ -6,7 +6,7 @@
   "main": "dist/core/index.js",
   "scripts": {
     "client": "gojs src/client -i index.js -p 9999",
-    "client:build": "cd src/client && gojs -b index.js && mv .dist/ ../../public",
+    "client:build": "cd src/client && gojs -b index.js && rimraf ../../public && mv .dist ../../public",
     "test": "jest",
     "test:cover": "jest --coverage",
     "babel": "rimraf dist && babel src -d dist -D --ignore=**/*.test.js",

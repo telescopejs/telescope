@@ -15,7 +15,33 @@ module.exports = [
     ],
     exclude: [/([\/\\])node_modules\1(core-js|babel-runtime)\1/],
     query: {
-      cacheDirectory: true
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "node": "6",
+              "browsers": ["ie>=9"]
+            },
+            "loose": true,
+            "useBuiltIns": true
+          }
+        ],
+        "react"
+      ],
+      "plugins": [
+        "lodash",
+        "transform-decorators-legacy",
+        "transform-class-properties",
+        "transform-object-rest-spread",
+        [
+          "transform-runtime",
+          {
+            "polyfill": false,
+            "regenerator": true
+          }
+        ]
+      ]
     },
     happy: { id: 'js' }
   }, {
