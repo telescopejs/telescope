@@ -7,7 +7,7 @@
 import * as React from 'react'
 import { h, binding } from 'react-mobx-vm'
 import map from 'lodash/map'
-import Telescope from '../../../../dist/core'
+import Telescope from '../../../core'
 
 const StyleSelect = ({ styleGetter, onChange, value }) => (
   <select onChange={onChange} value={value}>

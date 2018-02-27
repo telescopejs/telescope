@@ -5,8 +5,8 @@
  * @description:
  */
 import { Root, observable, bindView, autorun } from 'react-mobx-vm'
-import Telescope from '../../../../dist/core/'
-import highlight from '../../../../dist/core/utils/highlight'
+import Telescope from '../../../core/'
+import highlight from '../../../core/utils/highlight'
 import View from './View'
 import Preview from '../Preview/index'
 

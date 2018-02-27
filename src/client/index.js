@@ -7,7 +7,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './ViewModel/App/index'
-import parseQuerystring from '../../dist/core/utils/parseQuerystring'
+import parseQuerystring from '../core/utils/parseQuerystring'
 import { h } from 'react-mobx-vm'
 import '!style-loader!css-loader!./index.css'
 

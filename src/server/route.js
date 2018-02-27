@@ -16,9 +16,9 @@ const express = require('express')
 require('./registerRequire')
 const port = require('./port')
 const headless = require('./headless')
-const parse = require('../../dist/core/utils/parseQuerystring').default
-const AppVM = require('../../dist/client/ViewModel/App').default
-const Telescope = require('../../dist/core/index').default
+const parse = require('../core/utils/parseQuerystring').default
+const AppVM = require('../client/ViewModel/App').default
+const Telescope = require('../core/index').default
 
 const r = new Router
 const specRouter = new Router
