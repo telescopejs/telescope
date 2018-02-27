@@ -41,19 +41,17 @@ async function handle(query, req, res, next) {
   }
 
   const baseUrl = req.baseUrl
-  let buffer
+  let path
   switch (baseUrl) {
     case '/pdf':
-      buffer = await headless.pdf(url, options)
-      console.log('/img size:', buffer.length)
+      path = await headless.pdf(url, options)
       res.type('pdf')
-      streamifier(buffer).pipe(res)
+      res.sendFile(path)
       return
     case '/img':
-      buffer = await headless.img(url, options)
-      console.log('/img size:', buffer.length)
+      path = await headless.img(url, options)
       res.type('image/png')
-      streamifier(buffer).pipe(res)
+      res.sendFile(path)
       // .send(buffer)
       return
   }

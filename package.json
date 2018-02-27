@@ -39,6 +39,7 @@
     "markdown-it-replace-link": "^1.0.1",
     "markdown-it-task-lists": "^2.1.0",
     "md5": "^2.2.1",
+    "mkdirp": "^0.5.1",
     "parse-github-url": "1.0.2",
     "pify": "^3.0.0",
     "puppeteer": "^1.1.1",
