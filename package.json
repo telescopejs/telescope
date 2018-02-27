@@ -43,6 +43,7 @@
     "pify": "^3.0.0",
     "puppeteer": "^1.1.1",
     "qs": "^6.5.1",
+    "streamifier": "^0.1.1",
     "url-join": "^4.0.0"
   },
   "devDependencies": {

@@ -10,9 +10,28 @@ const u = require('url')
 // const p = require('pify')
 
 const cache = {}
+async function getOrSet(key, getter) {
+  if (cache[key]) {
+    const millionSecond = cache[key].timestamp - Date.now()
+    // over one day
+    if (millionSecond >= 1000 * 60 * 60 * 24) {
+      cache[key] = {
+        value: await getter(),
+        timestamp: Date.now()
+      }
+    }
+  }
+  else {
+    cache[key] = {
+      value: await getter(),
+      timestamp: Date.now()
+    }
+  }
+  return cache[key].value
+}
 
 async function savePdf(url, options = {}) {
-  const browser = await puppeteer.launch({ timeout: 100000 })
+  const browser = await puppeteer.launch({ timeout: 100000, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 100000 })
   // await page.waitFor('img')
@@ -22,7 +41,7 @@ async function savePdf(url, options = {}) {
 }
 
 async function saveImg(url, options = {}) {
-  const browser = await puppeteer.launch({ timeout: 100000 })
+  const browser = await puppeteer.launch({ timeout: 100000, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 100000 })
   // await page.waitFor('img')
@@ -70,11 +89,10 @@ async function saveImg(url, options = {}) {
 export async function pdf(url, options = {}) {
   const { force, ...opt } = options
   const k = md5(u.parse(url).query + JSON.stringify(opt)) + '.pdf'
-  if (cache[k] && !force) {
-    return cache[k]
+  if (force) {
+    delete cache[k]
   }
-  cache[k] = await savePdf(url, opt)
-  return cache[k]
+  return await getOrSet(k, async () => await savePdf(url, opt))
 }
 
 export async function img(url, options = {}) {
@@ -83,10 +101,8 @@ export async function img(url, options = {}) {
     opt.quality = +opt.quality
   }
   const k = md5(u.parse(url).query + JSON.stringify(opt))
-  // const path = nps.join(RUNTIME_IMG_PATH, k)
-  if (cache[k] && !force) {
-    return cache[k]
+  if (force) {
+    delete cache[k]
   }
-  cache[k] = await saveImg(url, opt)
-  return cache[k]
+  return await getOrSet(k, async () => await  saveImg(url, opt))
 }

@@ -6,6 +6,7 @@
  */
 const nps = require('path')
 const join = require('url-join')
+const { createReadStream: streamifier } = require('streamifier')
 const qs = require('qs')
 const { h } = require('react-mobx-vm')
 const ReactDOMServer = require('react-dom/server.node')
@@ -40,12 +41,20 @@ async function handle(query, req, res, next) {
   }
 
   const baseUrl = req.baseUrl
+  let buffer
   switch (baseUrl) {
     case '/pdf':
-      res.type('pdf').send(await headless.pdf(url, options))
+      buffer = await headless.pdf(url, options)
+      console.log('/img size:', buffer.length)
+      res.type('pdf')
+      streamifier(buffer).pipe(res)
       return
     case '/img':
-      res.type('image/png').send(await headless.img(url, options))
+      buffer = await headless.img(url, options)
+      console.log('/img size:', buffer.length)
+      res.type('image/png')
+      streamifier(buffer).pipe(res)
+      // .send(buffer)
       return
   }
 

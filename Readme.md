@@ -7,6 +7,9 @@
 git clone ...
 cd telescope
 PUPPETEER_DOWNLOAD_HOST=https://npm.taobao.org/mirrors npm install
+# requires chrome libraries
+# https://askubuntu.com/questions/510056/how-to-install-google-chrome
+
 npm run babel
 # server
 npm start
