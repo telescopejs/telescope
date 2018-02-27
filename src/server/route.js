@@ -24,6 +24,31 @@ const r = new Router
 const specRouter = new Router
 
 async function handle(query, req, res, next) {
+  // '/pdf' | '/img'
+  const {
+    style,
+    hlStyle,
+    q,
+    range,
+    print,
+    ...options
+  } = query
+  const url = join(`http://localhost:${port}/`, '?' + qs.stringify({ style, q, hlStyle, range, print: true }))
+  if (options.hasOwnProperty('_force')) {
+    options.force = true
+    delete options._force
+  }
+
+  const baseUrl = req.baseUrl
+  switch (baseUrl) {
+    case '/pdf':
+      res.type('pdf').send(await headless.pdf(url, options))
+      return
+    case '/img':
+      res.type('image/png').send(await headless.img(url, options))
+      return
+  }
+
 
   const appVM = AppVM.create({ input: query.q, inputVisible: false, styleSelectVisible: false })
   const telescope = appVM.telescope = new Telescope(query)
@@ -57,44 +82,19 @@ ${query.print ? `<link rel="stylesheet" href="${join('/', req.baseUrl, 'print.cs
 
 async function handleExact(req, res, next) {
   const { branch, name, owner, 0: filepath } = req.params
-
   const query = req.url.indexOf('?') >= 0 ? parse(req.url) : {}
   query.q = `https://github.com/${owner}/${name}/${branch || 'master'}/${filepath || ''}`
 
-
-  // '/pdf' | '/img'
-  const {
-    style,
-    hlStyle,
-    q,
-    range,
-    print,
-    ...options
-  } = query
-  const url = join(`http://localhost:${port}/`, '?' + qs.stringify({ style, q, hlStyle, range, print: true }))
-  // console.log(url)
-  if (options.hasOwnProperty('_force')) {
-    options.force = true
-    delete options._force
-  }
-
-  const baseUrl = req.baseUrl
-  switch (baseUrl) {
-    case '/pdf':
-      res.type('pdf').send(await headless.pdf(url, options))
-      return
-    case '/img':
-      res.type('image/png').send(await headless.img(url, options))
-      return
-  }
-
-  // console.error(req.params, req.url, query)
   await handle(query, req, res, next)
 }
 
 specRouter.all('/', async function (req, res, next) {
   const query = req.url.indexOf('?') >= 0 ? parse(req.url) : {}
+  try {
   await handle(query, req, res, next)
+  } catch (err) {
+    next(err)
+  }
 })
 specRouter.all('/style.css', function (req, res) {
   res.sendFile(require.resolve('../client/index.css'), {
