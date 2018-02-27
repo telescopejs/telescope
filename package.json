@@ -11,13 +11,13 @@
     "test:cover": "jest --coverage",
     "babel": "rimraf dist && babel src -d dist -D --ignore=**/*.test.js",
     "dev": "npm run babel -- -w",
-    "start": "nodemon --inspect dist/server/"
+    "start": "npm run babel && nodemon --inspect dist/server/"
   },
   "keywords": [
     "imcuttle",
     "telescope"
   ],
-  "author": "",
+  "author": "imcuttle",
   "license": "MIT",
   "dependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
