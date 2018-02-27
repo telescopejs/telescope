@@ -26,7 +26,7 @@ deploy:
   skip_cleanup: true
   github_token: ${GH_TOKEN} # Set in travis-ci.org dashboard
   local_dir: public
-  branch: master
+  target-branch: master
   repo: $GH_REF
 
 env:
