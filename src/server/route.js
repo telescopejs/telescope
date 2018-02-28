@@ -34,9 +34,9 @@ async function handle(query, req, res, next) {
     print,
     ...options
   } = query
-  const url = join(`http://localhost:${port}/`, '?' + qs.stringify({ style, q, hlStyle, range, print: true }))
+
   if (options.hasOwnProperty('_force')) {
-    options.force = true
+    options.force = options._force !== false
     delete options._force
   }
 
@@ -44,12 +44,18 @@ async function handle(query, req, res, next) {
   let path
   switch (baseUrl) {
     case '/pdf':
-      path = await headless.pdf(url, options)
+      path = await headless.pdf(
+        join(`http://localhost:${port}/`, '?' + qs.stringify({ style, q, hlStyle, range })),
+        options
+      )
       res.type('pdf')
       res.sendFile(path)
       return
     case '/img':
-      path = await headless.img(url, options)
+      path = await headless.img(
+        join(`http://localhost:${port}/`, '?' + qs.stringify({ style, q, hlStyle, range, print: true })),
+        options
+      )
       res.type('image/png')
       res.sendFile(path)
       // .send(buffer)
@@ -75,7 +81,7 @@ async function handle(query, req, res, next) {
 <link rel="stylesheet" href="${join('/', req.baseUrl, 'style')}/${telescope.options.style.replace(/\s/g, '-')}.css" />
 ${hlMarkup}
 <link rel="stylesheet" href="${join('/', req.baseUrl, 'style.css')}" />    
-<link rel="stylesheet" href="${join('/', req.baseUrl, 'print.css')}" media="print"/>    
+<!--<link rel="stylesheet" href="${join('/', req.baseUrl, 'print.css')}" media="print"/>-->    
 ${query.print ? `<link rel="stylesheet" href="${join('/', req.baseUrl, 'print.css')}" />` : ''}
 </head>
 <body>`)

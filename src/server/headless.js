@@ -32,7 +32,18 @@ async function savePdf(url, key, options = {}) {
   const page = await browser.newPage()
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 100000 })
   // await page.waitFor('img')
-  const buffer = await page.pdf({ format: 'A4', ...options, path: nps.join(RUNTIME_PATH, key) })
+  const buffer = await page.pdf({
+    format: 'A4',
+    printBackground: true,
+    margin: {
+      top: '10mm',
+      bottom: '9.5mm',
+      left: '10mm',
+      right: '9.5mm'
+    },
+    ...options,
+    path: nps.join(RUNTIME_PATH, key)
+  })
   await browser.close()
   return nps.join(RUNTIME_PATH, key)
 }
