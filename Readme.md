@@ -10,7 +10,7 @@ So you can write the markup as follows.
 
 ```html
 <!--https://telescopejs.github.io/ is the client side's service without any dynamic server-->
-<iframe src="https://telescopejs.github.io/?q=picidaejs/picidaejs" frameborder="0"></iframe>
+<iframe src="https://telescopejs.github.io/?q=picidaejs/picidaejs" frameborder="0" width="100%" height="400px"></iframe>
 ```
 
 ## Features
