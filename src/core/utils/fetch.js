@@ -5,6 +5,7 @@
  * @description:
  */
 import fetch from 'isomorphic-fetch'
+import getContentTypeByExt from './getContentTypeByExt'
 import { eachIterator} from './helper'
 
 function normalizeHeaders(response) {
@@ -38,15 +39,8 @@ export default async function wrappedFetch(url, ...args) {
   }
   const ext = url.replace(/.+\.(.+?)/, '$1').toLowerCase()
   if (type === 'md') {
-    switch (ext) {
-    case 'md':
-    case 'markdown':
-      break
-    case 'svg':
-      type = ext
-      break
-    default:
-      type = 'code'
+    type = getContentTypeByExt(ext)
+    if ('code' === type) {
       response.language = ext
     }
   }
