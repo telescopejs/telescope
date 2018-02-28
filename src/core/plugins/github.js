@@ -8,6 +8,11 @@ import parseGithub from '../utils/parseGithubUrl'
 import join from 'url-join'
 import u from 'url'
 
+export const noCacheHeaders = {
+  Pragma: 'no-cache',
+  'Cache-Control': 'no-cache'
+}
+
 module.exports = function github(telescope) {
   // telescope
   const defaultPlugin = telescope.defaultPlugin
@@ -44,11 +49,11 @@ module.exports = function github(telescope) {
           throw new Error('oops! readme is not found in repo: ' + obj.repo)
         }
         const readme = u.format({ ...obj, pathname: join(obj.pathname, key) })
-        response = defaultPlugin.fetch(readme)
+        response = defaultPlugin.fetch(readme, { headers: noCacheHeaders })
         obj.filepath = key
       }
       else {
-        response = defaultPlugin.fetch(url)
+        response = defaultPlugin.fetch(url, { headers: noCacheHeaders })
       }
       return response.then(res => {
         obj.hostname = obj.host = 'github.com'

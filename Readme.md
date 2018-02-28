@@ -69,5 +69,8 @@ Temporary outside service [`http://23.106.151.229:8002/`](http://23.106.151.229:
 /pdf/telescopejs/telescope/master/package.json
 ```
 
+## Customized
+If you want to customize yourself own telescope, Please write your [plugin](src/core/plugins).  
+
 ## License
 MIT [imcuttle](https://github.com/imcuttle)

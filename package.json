@@ -11,7 +11,7 @@
     "test:cover": "jest --coverage",
     "babel": "rimraf dist && babel src -d dist -D --ignore=**/*.test.js",
     "dev": "npm run babel -- -w",
-    "start": "npm run babel && nodemon --inspect dist/server/"
+    "start": "npm run babel && nodemon dist/server/"
   },
   "keywords": [
     "imcuttle",

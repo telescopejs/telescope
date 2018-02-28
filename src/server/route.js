@@ -77,7 +77,7 @@ async function handle(query, req, res, next) {
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Telescope</title>
+<title> 🔭 Telescope </title>
 <link rel="stylesheet" href="${join('/', req.baseUrl, 'style')}/${telescope.options.style.replace(/\s/g, '-')}.css" />
 ${hlMarkup}
 <link rel="stylesheet" href="${join('/', req.baseUrl, 'style.css')}" />    
