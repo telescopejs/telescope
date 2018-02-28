@@ -52,17 +52,6 @@ describe('markdown', function () {
   test('should works about yaml preamble', async () => {
     expect(
       await mark(j([
-        'not matching',
-        '',
-        '---',
-        'title: abc',
-        'tags: [a, b, c]',
-        '---'
-      ]))
-    ).toMatchSnapshot()
-
-    expect(
-      await mark(j([
         '---',
         'title: abc',
         'tags: [a, b, c]',
