@@ -32,6 +32,7 @@ export default class Telescope {
     type: 'md',
     style: 'github',
     hlStyle: 'github',
+    cache: true,
     range: [],
     plugins: [
       require('./plugins/github'),

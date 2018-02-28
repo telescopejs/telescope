@@ -6,11 +6,22 @@
  */
 import parseGithub from '../utils/parseGithubUrl'
 import join from 'url-join'
-import u from 'url'
+import * as u from 'url'
 
 export const noCacheHeaders = {
   Pragma: 'no-cache',
   'Cache-Control': 'no-cache'
+}
+
+export function appendTimestampOnQuery(url) {
+  const o = u.parse(url, true)
+  delete o.search
+  let k = '_'
+  while (k in o.query) {
+    k = k + '_'
+  }
+  o.query[k] = Date.now()
+  return u.format(o)
 }
 
 module.exports = function github(telescope) {
@@ -49,11 +60,15 @@ module.exports = function github(telescope) {
           throw new Error('oops! readme is not found in repo: ' + obj.repo)
         }
         const readme = u.format({ ...obj, pathname: join(obj.pathname, key) })
-        response = defaultPlugin.fetch(readme, { headers: noCacheHeaders })
+        response = telescope.options.cache
+          ? defaultPlugin.fetch(readme)
+          : defaultPlugin.fetch(appendTimestampOnQuery(readme), { headers: noCacheHeaders })
         obj.filepath = key
       }
       else {
-        response = defaultPlugin.fetch(url, { headers: noCacheHeaders })
+        response = telescope.options.cache
+          ? defaultPlugin.fetch(url, { headers: noCacheHeaders })
+          : defaultPlugin.fetch(appendTimestampOnQuery(url), { headers: noCacheHeaders })
       }
       return response.then(res => {
         obj.hostname = obj.host = 'github.com'

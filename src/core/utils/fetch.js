@@ -37,7 +37,7 @@ export default async function wrappedFetch(url, ...args) {
   else if (/text\/plain/.test(val)) {
     type = 'md'
   }
-  const ext = url.replace(/.+\.(.+?)/, '$1').toLowerCase()
+  const ext = url.replace(/\?.*?$/, '').replace(/.+\.(.+?)/, '$1').toLowerCase()
   if (type === 'md') {
     type = getContentTypeByExt(ext)
     if ('code' === type) {
