@@ -12,7 +12,7 @@ import Preview from '../Preview/index'
 
 @bindView(View)
 export default class Store extends Root {
-  @observable input = 'https://raw.githubusercontent.com/picidaejs/picidaejs/master/Readme.md'
+  @observable input = 'https://github.com/telescopejs/telescope/blob/master/Readme.md'
   preview = Preview.create()
   @observable inputVisible = false
   @observable styleSelectVisible = false
