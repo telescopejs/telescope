@@ -58,7 +58,7 @@ Open `http://localhost:9999` after setup the service on port 9999.
 And specially, `debug=true` is accepted on client side for debug.
 
 ### Server Side
-Temporary outside service `http://23.106.151.229:8002/`
+Temporary outside service [`http://23.106.151.229:8002/`](http://23.106.151.229:8002)
 - Please try the path name below
 ```text
 /telescopejs/telescope
