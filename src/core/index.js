@@ -87,7 +87,7 @@ export default class Telescope {
           const lines = text.split('\n')
           // neg
           if (typeof end !== 'undefined' && -end === Math.abs(end)) {
-            end = lines.length - 1 + end
+            end = lines.length - 1 + +end
           }
           text = lines.slice(start - 1, end).join('\n')
         }
