@@ -47,13 +47,14 @@ because I use the headless Chrome browser [puppeteer](https://github.com/GoogleC
 ### Client Side
 Open `http://localhost:9999` after setup the service on port 9999.
 
-- The accepted query string table (server side accepted too)  
+- The accepted query string table (server side accepted too)
+  
 | name | type | description |  
-| ---- | ---- | --------- |
-| `q`  | string | the fetching url, e.g. `picidaejs/picidaejs/master/src/index.js` `picidaejs/picidaejs` |
-| `style` | string | the view style, please see `https://telescopejs.github.io/?debug=true` |
-| `hlStyle` | string | the code's highlight style, please see `https://telescopejs.github.io/?debug=true` |
-| `range` | number\|\[start, end\] | the code's range, e.g. `?range=10` `?range=[10]` `?range=[10, 20]` `?range=[-20, -15]` |
+| ---- | ---- | --------- |  
+| `q`  | string | the fetching url, e.g. `picidaejs/picidaejs/master/src/index.js` `picidaejs/picidaejs` |  
+| `style` | string | the view style, please see `https://telescopejs.github.io/?debug=true` |  
+| `hlStyle` | string | the code's highlight style, please see `https://telescopejs.github.io/?debug=true` |  
+| `range` | number\|\[start, end\] | the code's range, e.g. `?range=10` `?range=[10]` `?range=[10, 20]` `?range=[-20, -15]` |  
 
 And specially, `debug=true` is accepted on client side for debug.
 
