@@ -9,8 +9,7 @@ import replaceLink from 'markdown-it-replace-link'
 import taskList from 'markdown-it-task-lists'
 import emoji from 'markdown-it-emoji'
 import preamble from 'markdown-it-github-preamble'
-// @todo wait for author update the version.
-// import headings from 'markdown-it-github-headings'
+import headings from 'markdown-it-github-headings'
 import highlight from './highlight'
 
 import nUrl from 'url'
@@ -49,7 +48,7 @@ export default async function markdown(markdown, options = {}) {
     markdownItOptions
   })
 
-  const mark = [taskList, emoji, preamble, replaceLink]
+  const mark = [taskList, emoji, preamble, replaceLink, headings]
     .concat(transformers)
     .reduce((main, plugin) => {
       if (Array.isArray(plugin)) {

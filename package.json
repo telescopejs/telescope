@@ -34,7 +34,7 @@
     "lodash": "^4.17.5",
     "markdown-it": "^8.4.0",
     "markdown-it-emoji": "^1.4.0",
-    "markdown-it-github-headings": "^1.1.0",
+    "markdown-it-github-headings": "^1.1.1",
     "markdown-it-github-preamble": "^1.0.0",
     "markdown-it-replace-link": "^1.0.1",
     "markdown-it-task-lists": "^2.1.0",
