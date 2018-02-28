@@ -28,7 +28,7 @@ async function getOrSet(key, getter) {
 }
 
 async function savePdf(url, key, options = {}) {
-  const browser = await puppeteer.launch({ timeout: 100000 })
+  const browser = await puppeteer.launch({ timeout: 100000, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 100000 })
   // await page.waitFor('img')
@@ -49,7 +49,7 @@ async function savePdf(url, key, options = {}) {
 }
 
 async function saveImg(url, key, options = {}) {
-  const browser = await puppeteer.launch({ timeout: 100000 })
+  const browser = await puppeteer.launch({ timeout: 100000, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 100000 })
   // await page.waitFor('img')

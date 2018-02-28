@@ -1,4 +1,4 @@
-# telescope 🔭
+# Telescope 🔭
 
 [![build status](https://img.shields.io/travis/telescopejs/telescope/master.svg?style=flat-square)](https://travis-ci.org/telescopejs/telescope)
 [![Test coverage](https://img.shields.io/codecov/c/github/telescopejs/telescope.svg?style=flat-square)](https://codecov.io/github/telescopejs/telescope?branch=master)
