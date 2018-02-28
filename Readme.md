@@ -15,7 +15,7 @@ So you can write the markup as follows.
 
 ## Features
 - ✈ Supports client and server side.
-- 🍻 Supports dynamic style.
+- 🍻 Multiply [styles](https://telescopejs.github.io/?debug=true).
 - 😊 The service server side supports output the view via image or pdf.
 - 🍫 The code supports specified line range.
 - 👍 More features is waiting for you to discover...
@@ -70,7 +70,7 @@ Temporary outside service [`http://23.106.151.229:8002/`](http://23.106.151.229:
 ```
 
 ## Customized
-If you want to customize yourself own telescope, Please write your [plugin](src/core/plugins).  
+If you want to customize yourself own telescope, Please write your [plugin](src/core/plugins) or [style](src/core/styles).  
 
 ## License
 MIT [imcuttle](https://github.com/imcuttle)

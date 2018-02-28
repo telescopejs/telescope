@@ -9,6 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "highlight.js": "^9.12.0"
+  },
   "dependencies": {}
 }

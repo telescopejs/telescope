@@ -36,16 +36,37 @@ export default class View extends React.Component {
   render() {
     return (
       <div>
-        {
-          this.local.inputVisible && <div>
-            <input type="text" data-bind="input"/>
-            <button onClick={this.handleExplore}>Explore</button>
-          </div>
+        {(
+           this.local.inputVisible || this.local.styleSelectVisible
+         )
+         && <div style={{ textAlign: 'center' }}>
+           {
+             this.local.inputVisible && <div>
+               <label>Query  </label>
+               <input type="text" data-bind="input"/>
+               <button onClick={this.handleExplore}>Explore</button>
+             </div>
+           }
+           {
+             this.local.styleSelectVisible &&
+             <div>
+               <label>Style  </label>
+               <StyleSelect onChange={this.changeStyle} styleGetter={Telescope.styleGetter}
+                                                 value={this.local.style}/>
+               <span style={{ display: 'inline-block', marginLeft: 10 }}>{this.local.style}</span>
+             </div>
+           }
+           {
+             this.local.styleSelectVisible &&
+             <div><label>Highlight Style  </label>
+               <StyleSelect onChange={this.changeHlStyle}
+                            styleGetter={Telescope.hlStyleGetter}
+                            value={this.local.hlStyle}/>
+               <span style={{ display: 'inline-block', marginLeft: 10 }}>{this.local.hlStyle}</span>
+             </div>
+           }
+         </div>
         }
-        {this.local.styleSelectVisible &&
-          <StyleSelect onChange={this.changeStyle} styleGetter={Telescope.styleGetter} value={this.local.style} />}
-        {this.local.styleSelectVisible &&
-          <StyleSelect onChange={this.changeHlStyle} styleGetter={Telescope.hlStyleGetter} value={this.local.hlStyle} />}
         {h(this.local.preview)}
       </div>
     )

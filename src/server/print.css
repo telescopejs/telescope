@@ -10,6 +10,9 @@ body {
 .telescope.code-body {
   padding: 0!important;
 }
+.telescope.code-body pre {
+  border-radius: 0;
+}
 .telescope.code-body code {
   display: inline-block;
   padding: 10px;
