@@ -47,7 +47,7 @@ because I use the headless Chrome browser [puppeteer](https://github.com/GoogleC
 ### Client Side
 Open `http://localhost:9999` after setup the service on port 9999.
 
-- The accepted query string table (server side accepted too)
+- The accepted query string table (server side accepted too)  
 | name | type | description |  
 | ---- | ---- | --------- |
 | `q`  | string | the fetching url, e.g. `picidaejs/picidaejs/master/src/index.js` `picidaejs/picidaejs` |
