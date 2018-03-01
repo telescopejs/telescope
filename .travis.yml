@@ -13,18 +13,18 @@ install:
 
 jobs:
   include:
-    allow_failures:
-      - stage: Document deploy
-        script: npm run client:build
-        node_js: stable
-        deploy:
-          provider: pages
-          skip_cleanup: true
-          github_token: ${GH_TOKEN} # Set in travis-ci.org dashboard
-          local_dir: public
-          target-branch: master
-          repo: $GH_REF
-        env: GH_REF=telescopejs/telescopejs.github.io
+
+    - stage: Document deploy
+      script: npm run client:build
+      node_js: stable
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: ${GH_TOKEN} # Set in travis-ci.org dashboard
+        local_dir: public
+        target-branch: master
+        repo: $GH_REF
+      env: GH_REF=telescopejs/telescopejs.github.io
 
     - stage: Unit testing
       before_script: npm install codecov
