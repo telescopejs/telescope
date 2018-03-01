@@ -4,19 +4,31 @@
  * @date: 2018/2/11
  * @description:
  */
-import { Root, observable, bindView, autorun } from 'react-mobx-vm'
+import { Root, observable, bindView, urlSync, registerUrlSync, autorun } from 'react-mobx-vm'
+import { createHistory } from 'history'
 import Telescope from '../../../core/'
 import highlight from '../../../core/utils/highlight'
 import View from './View'
 import Preview from '../Preview/index'
 
+
+if (typeof document !== 'undefined') {
+  const history = createHistory()
+  registerUrlSync(history)
+}
+// console.log(history)
+
 @bindView(View)
 export default class Store extends Root {
+  @urlSync('q')
   @observable input = 'https://github.com/telescopejs/telescope/blob/master/Readme.md'
   preview = Preview.create()
   @observable inputVisible = false
   @observable styleSelectVisible = false
+
+  @urlSync
   @observable style = ''
+  @urlSync
   @observable hlStyle = ''
 
   useableStyle = null

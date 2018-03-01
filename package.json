@@ -30,6 +30,7 @@
     "express": "^4.16.2",
     "github-markdown-css": "^2.10.0",
     "highlight.js": "^9.12.0",
+    "history": "^3.3.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5",
     "markdown-it": "^8.4.0",
