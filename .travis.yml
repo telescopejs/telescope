@@ -16,11 +16,8 @@ jobs:
 
     - stage: Unit testing
       before_script: npm install codecov
-      script: npm test:cover
+      script: npm run test:cover
       after_script: codecov --token=$CODECOV_TOKEN
-
-    - stage: E2E testing
-      script: npm run test:cy:ci $CYPRESS_RECORD_KEY
 
     - stage: deploy
       script: npm run client:build
