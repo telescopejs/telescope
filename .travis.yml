@@ -11,25 +11,28 @@ cache:
 install:
   - npm install
 
-before_script:
-  - npm install codecov
-script:
-  - npm run test:cover
-after_script:
-  - codecov --token=$CODECOV_TOKEN
+install:
+  - npm install
 
+jobs:
+  include:
 
-before_deploy:
-  - npm run client:build
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: ${GH_TOKEN} # Set in travis-ci.org dashboard
-  local_dir: public
-  target-branch: master
-  repo: $GH_REF
+    - stage: Unit testing
+      before_script: npm install codecov
+      script: npm test:cover
+      after_script: codecov --token=$CODECOV_TOKEN
 
-env:
-  global:
-    - GH_REF=telescopejs/telescopejs.github.io
+    - stage: E2E testing
+      script: npm run test:cy:ci $CYPRESS_RECORD_KEY
 
+    - stage: deploy
+      script: npm run client:build
+      node_js: stable
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: ${GH_TOKEN} # Set in travis-ci.org dashboard
+        local_dir: public
+        target-branch: master
+        repo: $GH_REF
+        env: GH_REF=telescopejs/telescopejs.github.io
