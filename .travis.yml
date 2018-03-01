@@ -11,9 +11,6 @@ cache:
 install:
   - npm install
 
-install:
-  - npm install
-
 jobs:
   include:
 
