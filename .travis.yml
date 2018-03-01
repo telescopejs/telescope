@@ -13,13 +13,7 @@ install:
 
 jobs:
   include:
-
-    - stage: Unit testing
-      before_script: npm install codecov
-      script: npm run test:cover
-      after_script: codecov --token=$CODECOV_TOKEN
-
-    - stage: deploy
+    - stage: Document deploy
       script: npm run client:build
       node_js: stable
       deploy:
@@ -30,3 +24,8 @@ jobs:
         target-branch: master
         repo: $GH_REF
         env: GH_REF=telescopejs/telescopejs.github.io
+
+    - stage: Unit testing
+      before_script: npm install codecov
+      script: npm run test:cover
+      after_script: codecov --token=$CODECOV_TOKEN
