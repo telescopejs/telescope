@@ -32,7 +32,7 @@
     "highlight.js": "^9.12.0",
     "history": "^3.3.0",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.13",
     "markdown-it": "^8.4.0",
     "markdown-it-emoji": "^1.4.0",
     "markdown-it-github-headings": "^1.1.1",
