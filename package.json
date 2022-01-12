@@ -33,7 +33,7 @@
     "history": "^3.3.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5",
-    "markdown-it": "^8.4.0",
+    "markdown-it": "^12.3.2",
     "markdown-it-emoji": "^1.4.0",
     "markdown-it-github-headings": "^1.1.1",
     "markdown-it-github-preamble": "^1.0.0",
